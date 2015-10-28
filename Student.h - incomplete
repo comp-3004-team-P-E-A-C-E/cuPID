@@ -10,7 +10,7 @@ class Student : public User {
   //skills - similar format to gpa
   short creat[3];
   short program[3];
-  short design[3]
+  short design[3];
   short organiz[3];
   short testing[3];
   short comm[3];
