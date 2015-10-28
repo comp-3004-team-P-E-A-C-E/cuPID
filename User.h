@@ -6,6 +6,6 @@ class User {
   char* name;
   User();
   User(char* n);
-}; 
+};
 
 #endif
