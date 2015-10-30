@@ -3,7 +3,7 @@
 #include "Admin.h"
 #include <algorithm>
 
-Project::Project(char* n, Admin* a) {
+Project::Project(std::string n, Admin* a) {
   name = n;
   owner = a;
 }
@@ -22,4 +22,8 @@ Student* Project::getStu(int i) {
 
 void Project::setTeamSize(int i) {
   teamSize = i;
+}
+
+std::string Project::getName(){
+	return name;
 }
