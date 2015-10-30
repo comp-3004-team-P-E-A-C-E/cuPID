@@ -1,5 +1,5 @@
 #include "User.h"
 
-User::User(char* n) {
+User::User(std::string n) {
   name = n;
 }
