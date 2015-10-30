@@ -5,7 +5,7 @@
 #include <iostream>
 #include <algorithm>
 
-bool ProjectControl::createProj(Admin* a, char* n) { 
+bool ProjectControl::createProj(Admin* a, std::string n) { 
   projects.push_back(new Project(n, a)); 
 }
 
