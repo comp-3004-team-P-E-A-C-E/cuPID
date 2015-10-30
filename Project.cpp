@@ -8,16 +8,6 @@ Project::Project(char* n, Admin* a) {
   owner = a;
 }
 
-bool Project::addStudent(Student* s) {
-  students.push_back(s);
-}
-
-bool Project::removeStudent(Student* s) {
-  std::vector<Student*>::iterator it;
-  for(it = students.begin(); it != students.end(); it++)
-  	if(*it == s) students.erase(it);
-}
-
 bool Project::containsStu(Student* s) {
   if(std::find(students.begin(), students.end(), s) != students.end())
     return true;
