@@ -1,3 +1,3 @@
 #include "Admin.h"
 
-Admin::Admin(char* n) : User(n){}
+Admin::Admin(std::string n) : User(n){}
