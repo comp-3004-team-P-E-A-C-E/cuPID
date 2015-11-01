@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 
 std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 	
@@ -13,53 +14,43 @@ std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 	
 	//std::getline(stufilein, textc);// >> textc;
 		//char* text = textc;
-	Student* s = new Student ("name");
+	Student* stu = new Student ("name");
 	char * cstr;
+	std::string N;
+	int g, r, A;
 	while (std::getline(stufilein, textc)){
 		cstr = new char [textc.substr(1).length()+1];
+		std::strcpy(cstr,textc.c_str());
 		switch(textc[0]){
 			case 'N': 
-				std::cout << "new student created Name: " << textc.substr(1) << std::endl;
-				s = new Student (textc.substr(1));
+				
+				N = (textc.substr(1));
+				//s = new Student (textc.substr(1));
+				std::cout << "new student created Name: " << N << std::endl;
 				break;
 			case 'g': 
-				std::cout << "Grade: " << cstr[0] << std::endl;
-				s->getProfile()->grade = (int)(cstr[0]);
+				//s->getProfile()->grade = (int)(cstr[0]);
+				g = (int)(cstr[0]);
+				std::cout << "Grade: " << g << std::endl;
 				break;
 			case 'r': 
-				std::cout << "Area of Interest: " << cstr << std::endl;
-				s->getProfile()->aoi = (int)(cstr[0]);
+				r = (int)(cstr[0]);
+				std::cout << "Area of Interest: " << r << std::endl;
+				//s->getProfile()->aoi = (int)(cstr[0]);
 				break;
 			case 'A': 
-				std::cout << "Available Time: " << cstr << std::endl;
-				s->getProfile()->time = (int)(cstr[0]);
+				A = (int)(cstr[0]);
+				std::cout << "Available Time: " << A << std::endl;
+				//s->getProfile()->time = (int)(cstr[0]);
 				break;
 			case 'Z':
-				students.push_back(s);
+				stu = new Student (N);
+				stu->getProfile()->grade = g;
+				stu->getProfile()->aoi = r;
+				stu->getProfile()->time = A;
+				students.push_back(stu);
 				break;
 		}
-		
-		
-		
-		
-		
-		/*std::getline(stufilein, textc);
-		//if(textc == "END" || stufilein.fail()){
-		//	break;
-		//}else{
-			std::cout << "in the while loop" << std::endl;
-			
-			Student* s = new Student(textc);
-		
-			stufilein >> textn;
-			s->getProfile()->grade = textn;
-			stufilein >> textn;
-			s->getProfile()->aoi = textn;
-			stufilein >> textn;
-			s->getProfile()->time = textn;
-			students.push_back(s);
-			//std::getline(stufilein, textc);
-		//}*/
 	}
 	
 	return students;
