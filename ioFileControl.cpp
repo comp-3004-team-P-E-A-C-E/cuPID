@@ -7,23 +7,59 @@ std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 	
 	std::string textc;
 	int textn;
-  
-	std::ifstream stufilein("StudentList.txt", std::ios::in);
+	std::ifstream stufilein;
+	stufilein.open("StudentList.txt");
 	std::cout << "read in the file" << std::endl;
 	
-	while (!stufilein.eof()){
-		std::cout << "in the while loop" << std::endl;
-		std::getline(stufilein, textc);// >> textc;
+	//std::getline(stufilein, textc);// >> textc;
 		//char* text = textc;
-		Student* s = new Student(textc);
+	Student* s = new Student ("name");
+	char * cstr;
+	while (std::getline(stufilein, textc)){
+		cstr = new char [textc.substr(1).length()+1];
+		switch(textc[0]){
+			case 'N': 
+				std::cout << "new student created Name: " << textc.substr(1) << std::endl;
+				s = new Student (textc.substr(1));
+				break;
+			case 'g': 
+				std::cout << "Grade: " << cstr[0] << std::endl;
+				s->getProfile()->grade = (int)(cstr[0]);
+				break;
+			case 'r': 
+				std::cout << "Area of Interest: " << cstr << std::endl;
+				s->getProfile()->aoi = (int)(cstr[0]);
+				break;
+			case 'A': 
+				std::cout << "Available Time: " << cstr << std::endl;
+				s->getProfile()->time = (int)(cstr[0]);
+				break;
+			case 'Z':
+				students.push_back(s);
+				break;
+		}
 		
-		stufilein >> textn;
-		s->getProfile()->grade = textn;
-		stufilein >> textn;
-		s->getProfile()->aoi = textn;
-		stufilein >> textn;
-		s->getProfile()->time = textn;
-		students.push_back(s);
+		
+		
+		
+		
+		/*std::getline(stufilein, textc);
+		//if(textc == "END" || stufilein.fail()){
+		//	break;
+		//}else{
+			std::cout << "in the while loop" << std::endl;
+			
+			Student* s = new Student(textc);
+		
+			stufilein >> textn;
+			s->getProfile()->grade = textn;
+			stufilein >> textn;
+			s->getProfile()->aoi = textn;
+			stufilein >> textn;
+			s->getProfile()->time = textn;
+			students.push_back(s);
+			//std::getline(stufilein, textc);
+		//}*/
 	}
 	
 	return students;
@@ -32,15 +68,13 @@ void ioFileControl::stuOutput(std::vector<Student*> students){
 	std::ofstream stufileout("StudentList.txt", std::ios::out);
   
 	for(int i =0; i<students.size();i++){
-		stufileout << students[i]->name;
-		stufileout << std::endl;
-		stufileout << students[i]->getProfile()->grade;
-		stufileout << std::endl;
-		stufileout << students[i]->getProfile()->aoi; //area of interest
-		stufileout << std::endl;
-		stufileout << students[i]->getProfile()->time;
-		stufileout << std::endl;
+		
+		stufileout << "N" << students[i]->name << std::endl;
+		stufileout << "g" << students[i]->getProfile()->grade << std::endl;
+		stufileout << "r" << students[i]->getProfile()->aoi << std::endl;//area of interest
+		stufileout << "A" << students[i]->getProfile()->time << std::endl;
 	}
+	stufileout << "Z" ;
 	
 	//code for outputting the array variables
 	
