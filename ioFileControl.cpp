@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <stdlib.h>
 
 std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 	
@@ -20,7 +21,7 @@ std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 	int g, r, A;
 	while (std::getline(stufilein, textc)){
 		cstr = new char [textc.substr(1).length()+1];
-		std::strcpy(cstr,textc.c_str());
+		std::strcpy(cstr,textc.c_str()+1);
 		switch(textc[0]){
 			case 'N': 
 				
@@ -30,16 +31,16 @@ std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 				break;
 			case 'g': 
 				//s->getProfile()->grade = (int)(cstr[0]);
-				g = (int)(cstr[0]);
+				g = (atoi(cstr));
 				std::cout << "Grade: " << g << std::endl;
 				break;
 			case 'r': 
-				r = (int)(cstr[0]);
+				r = (atoi(cstr));
 				std::cout << "Area of Interest: " << r << std::endl;
 				//s->getProfile()->aoi = (int)(cstr[0]);
 				break;
 			case 'A': 
-				A = (int)(cstr[0]);
+				A = (atoi(cstr));
 				std::cout << "Available Time: " << A << std::endl;
 				//s->getProfile()->time = (int)(cstr[0]);
 				break;
