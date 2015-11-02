@@ -9,6 +9,10 @@ bool ProjectControl::createProj(Admin* a, std::string n) {
   projects.push_back(new Project(n, a)); 
 }
 
+bool ProjectControl::addProj(Project* p) { 
+  projects.push_back(p); 
+}
+
 bool ProjectControl::addStu(Student* s, Project* p) {
   if(!p->containsStu(s))
     p->students.push_back(s);
@@ -26,6 +30,10 @@ Project* ProjectControl::getProj(int i) {
 
 void ProjectControl::editTeamSize(Project* p, int i) {
     p->teamSize = i;
+}
+
+std::vector<Student*> ProjectControl::getStuList(Project* p) {
+  return p->students;
 }
 
 //returns projects the student is in

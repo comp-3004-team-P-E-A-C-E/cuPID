@@ -18,7 +18,9 @@ class Project {
   Project(std::string, Admin*);
   bool containsStu(Student*);
   Student* getStu(int);
+  Admin* getAdm();
   void setTeamSize(int);
+  int getTeamSize();
   std::string getName();
   int getNumStu();
 };

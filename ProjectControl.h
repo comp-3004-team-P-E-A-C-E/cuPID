@@ -10,11 +10,13 @@ class Admin;
 class ProjectControl {
   public:
   bool createProj(Admin*, std::string);
+  bool addProj(Project*);
   bool addStu(Student*, Project*);
   bool removeStu(Student*, Project*);
   Project* getProj(int);
   void editTeamSize(Project*, int);
 
+  std::vector<Student*> getStuList(Project*);
   std::vector<Project*> getJoined(Student*);
   std::vector<Project*> getOwned(Admin*);
 
