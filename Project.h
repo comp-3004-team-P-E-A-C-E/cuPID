@@ -1,3 +1,5 @@
+#ifndef PROJECT_H
+#define PROJECT_H
 #include <vector>
 #include <string>
 
@@ -18,4 +20,6 @@ class Project {
   Student* getStu(int);
   void setTeamSize(int);
   std::string getName();
+  int getNumStu();
 };
+#endif
