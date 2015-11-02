@@ -15,7 +15,7 @@ bool Project::containsStu(Student* s) {
 }
 
 Student* Project::getStu(int i) {
-  if(i < students.size()-1) 
+  if(i < students.size()) 
     return students[i];
   return NULL;
 }
@@ -26,4 +26,8 @@ void Project::setTeamSize(int i) {
 
 std::string Project::getName(){
 	return name;
+}
+
+int Project::getNumStu(){
+	return students.size();
 }
