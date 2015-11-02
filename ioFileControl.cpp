@@ -132,3 +132,101 @@ void ioFileControl::stuOutput(std::vector<Student*> students){
 	//stufile.close();
 	
 }
+
+std::vector<Admin*> ioFileControl::admInput(std::vector<Admin*> admins){
+ 
+  std::string textc;
+  int textn;
+  std::ifstream stufilein;
+  stufilein.open("AdminList.txt");
+  std::cout << "read in the admins" << std::endl;
+ 
+  Admin* adm;
+  char * cstr;
+  std::string N;
+  while (std::getline(stufilein, textc)){
+    cstr = new char [textc.substr(1).length()+1];
+    std::strcpy(cstr,textc.c_str()+1);
+    switch(textc[0]){
+     case 'N': 
+       N = (textc.substr(1));
+       adm = new Admin (N);
+       admins.push_back(adm);
+       break;
+     }
+  }
+  return admins;
+ }
+
+void ioFileControl::admOutput(std::vector<Admin*> admins){
+  std::ofstream stufileout("AdminList.txt", std::ios::out);
+  std::cout << "number of admins at write: " << admins.size() << std::endl;
+  for(int i =0; i<admins.size();i++){
+    stufileout << "N" << admins[i]->name << std::endl;
+  } 
+ }
+
+
+
+
+void ioFileControl::prjInput(ProjectControl* pc, std::vector<Admin*> admins, std::vector<Student*> students){
+	
+	std::string textc;
+	int textn;
+	std::ifstream stufilein;
+	stufilein.open("ProjectList.txt");
+	std::cout << "read in the file" << std::endl;
+
+       std::vector<Admin*>::iterator it;
+       std::vector<Student*>::iterator it2;
+	
+	Project* prj;
+	char * cstr;
+	std::string N, N2;
+	int ts;
+	while (std::getline(stufilein, textc)){
+		cstr = new char [textc.substr(1).length()+1];
+		std::strcpy(cstr,textc.c_str()+1);
+		switch(textc[0]){
+			case 'N': //name
+				N = (textc.substr(1));
+				break;
+			case 't': //teamsize
+				ts = (atoi(cstr));
+				break;
+			case 'A': //Admin Name
+                                N2 = (textc.substr(1)); 
+				for(it = admins.begin(); it != admins.end(); it++)
+                                  if((*it)->getName() == N2) {
+                                    prj = new Project(N, *it);
+                                    pc->addProj(prj);
+                                    prj->setTeamSize(ts);
+                                    std::cout << "new Project created Name: " << N << "\nts: " << ts <<  "\nAdmin: " << N2 << std::endl;
+                                  }
+				break;
+			case 'S': //Student Name 
+				N2 = (textc.substr(1));
+                                for(it2 = students.begin(); it2 != students.end(); it2++)
+                                  if((*it2)->getName() == N2)
+                                    pc->addStu(*it2, prj);
+				std::cout << "New Student: " << N2 << std::endl;
+				break;
+		}
+	}
+}
+
+void ioFileControl::prjOutput(ProjectControl* pc){
+  std::ofstream stufileout("ProjectList.txt", std::ios::out);
+  int i = 0;
+  Project* curr = pc->getProj(i);
+  while (curr != NULL) {
+    stufileout << "N" << curr->getName() << std::endl;
+    stufileout << "t" << curr->getTeamSize() << std::endl;
+    stufileout << "A" << curr->getAdm()->getName() << std::endl;
+    for(int j = 0; j < curr->getNumStu(); j++) {
+      stufileout << "S" << curr->getStu(j)->getName() << std::endl;
+    }
+    i++;
+    curr = pc->getProj(i);
+  } 
+}
