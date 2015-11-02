@@ -1,3 +1,5 @@
+#ifndef PROJECTCONTROL_H
+#define PROJECTCONTROL_H
 #include <vector>
 #include <string>
 
@@ -19,3 +21,4 @@ class ProjectControl {
   private:
   std::vector<Project*> projects;
 };
+#endif
