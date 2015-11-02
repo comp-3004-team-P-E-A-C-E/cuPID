@@ -20,8 +20,16 @@ Student* Project::getStu(int i) {
   return NULL;
 }
 
+Admin* Project::getAdm() {
+  return owner;
+}
+
 void Project::setTeamSize(int i) {
   teamSize = i;
+}
+
+int Project::getTeamSize() {
+  return teamSize;
 }
 
 std::string Project::getName(){
