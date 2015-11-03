@@ -6,9 +6,11 @@
 class Project;
 class Student;
 class Admin;
+class Repository;
 
 class ProjectControl {
   public:
+  ProjectControl();
   bool createProj(Admin*, std::string);
   bool addProj(Project*);
   bool addStu(Student*, Project*);
@@ -19,6 +21,8 @@ class ProjectControl {
   std::vector<Student*> getStuList(Project*);
   std::vector<Project*> getJoined(Student*);
   std::vector<Project*> getOwned(Admin*);
+
+  Repository* rep;
 
   private:
   std::vector<Project*> projects;
