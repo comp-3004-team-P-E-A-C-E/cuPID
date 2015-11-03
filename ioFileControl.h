@@ -8,8 +8,8 @@
 
 class ioFileControl{
 	public:
-	std::vector<Student*> stuInput(std::vector<Student*>);
-	std::vector<Admin*> admInput(std::vector<Admin*>);
+	void stuInput(std::vector<Student*>*);
+        void admInput(std::vector<Admin*>*);
         void prjInput(ProjectControl*, std::vector<Admin*>, std::vector<Student*>);
 	void stuOutput(std::vector<Student*>);
 	void admOutput(std::vector<Admin*>);
