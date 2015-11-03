@@ -1,9 +1,19 @@
 #include "ProjectControl.h"
+#include "ioFileControl.h"
+#include "Repository.h"
 #include "Project.h"
 #include "Student.h"
 #include "Admin.h"
 #include <iostream>
 #include <algorithm>
+
+ProjectControl::ProjectControl() {
+  ioFileControl* fc = new ioFileControl();
+  rep = new Repository();
+  fc->stuInput(rep->getStudents());
+  fc->admInput(rep->getAdmins());
+  fc->prjInput(this, *(rep->getAdmins()), *(rep->getStudents()));
+}
 
 bool ProjectControl::createProj(Admin* a, std::string n) { 
   projects.push_back(new Project(n, a)); 
