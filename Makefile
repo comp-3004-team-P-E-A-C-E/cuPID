@@ -1,4 +1,4 @@
-OBJ = main.o Student.o Admin.o Project.o User.o Profile.o ioFileControl.o ProjectControl.o
+OBJ = main.o Student.o Admin.o Project.o User.o Profile.o ioFileControl.o ProjectControl.o Repository.o
 
 a1:	$(OBJ)
 	g++ -o a1 $(OBJ)
@@ -27,6 +27,8 @@ ioFileControl.o:	ioFileControl.cpp ioFileControl.h
 ProjectControl.o:	ProjectControl.cpp ProjectControl.h
 	g++ -c ProjectControl.cpp
 
+Repository.o:	Repository.cpp Repository.h
+	g++ -c Repository.cpp
+
 clean:
 	rm -f *.o a1
-
