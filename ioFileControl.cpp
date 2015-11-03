@@ -5,7 +5,7 @@
 #include <cstring>
 #include <stdlib.h>
 
-std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
+void ioFileControl::stuInput(std::vector<Student*>* students){
 	
 	std::string textc;
 	int textn;
@@ -24,7 +24,6 @@ std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 			case 'N': 
 				
 				N = (textc.substr(1));
-				std::cout << "new student created Name: " << N << std::endl;
 				break;
 			case 'g': 
 				g = (atoi(cstr));
@@ -39,16 +38,16 @@ std::vector<Student*> ioFileControl::stuInput(std::vector<Student*> students){
 				std::cout << "Available Time: " << A << std::endl;
 				break;
 			case 'Z':
-				stu = new Student (N);
+				stu = new Student(N);
 				stu->getProfile()->grade = g;
 				stu->getProfile()->aoi = r;
 				stu->getProfile()->time = A;
-				students.push_back(stu);
+				std::cout << "new student created Name: " << N << std::endl;
+				students->push_back(stu);
+				std::cout << "new student created Name: " << N << std::endl;
 				break;
 		}
 	}
-	
-	return students;
 }
 void ioFileControl::stuOutput(std::vector<Student*> students){
 	std::ofstream stufileout("StudentList.txt", std::ios::out);
@@ -133,7 +132,7 @@ void ioFileControl::stuOutput(std::vector<Student*> students){
 	
 }
 
-std::vector<Admin*> ioFileControl::admInput(std::vector<Admin*> admins){
+void ioFileControl::admInput(std::vector<Admin*>* admins){
  
   std::string textc;
   int textn;
@@ -151,12 +150,11 @@ std::vector<Admin*> ioFileControl::admInput(std::vector<Admin*> admins){
      case 'N': 
        N = (textc.substr(1));
        adm = new Admin (N);
-       admins.push_back(adm);
+       admins->push_back(adm);
        break;
      }
   }
-  return admins;
- }
+}
 
 void ioFileControl::admOutput(std::vector<Admin*> admins){
   std::ofstream stufileout("AdminList.txt", std::ios::out);
